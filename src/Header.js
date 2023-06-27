@@ -1,12 +1,12 @@
 import React from 'react'
 
-const Header = () => {
+const Header = (props) => {
 
     const Headerstyle = {backgroundColor:'blue', color:'white'}
   return (
     <header style={Headerstyle}>
 
-        <h1>To do List</h1>
+        <h1>{props.title}</h1>
 
     </header>
   )

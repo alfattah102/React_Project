@@ -1,9 +1,10 @@
 import React from 'react'
+import Itemlist from './itemlist'
 
-import {useState} from 'react'
-import { FaTrashAlt } from "react-icons/fa";
 
-function Message() {
+
+
+function Message({items, handleCheck,handleDelete}) {
     // function Handleactionchange(){
     //     console.log("im running");
        
@@ -31,70 +32,17 @@ function Message() {
 
         //  }
 
-        const [items, setItems] = useState([
-
-            {
-                id:1,
-                checked: true,
-                items :"Do prayer Fajr"
-
-            },
-            {
-                id:2,
-                checked: true,
-                items :"Do Meditate"
-
-            },
-            {
-                id:3,
-                checked: true,
-                items :"GO to Gym"
-
-            }
-        ])
-
-        const handleCheck = (id) => {
-          
-            const listitems = items.map((item) => 
-            item.id === id ? {...item, checked:!item.checked} : item)
-            setItems(listitems)
-            localStorage.setItem("todo_list",JSON.stringify(listitems))
-
-        }
-
-        const handleDelete = (id) => {
-               
-            const listitems = items.filter((item) =>
-            item.id!==id)
-            setItems(listitems);
-            localStorage.setItem("todo_list",JSON.stringify(listitems))
-        }
+       
   return (
     <main>
         {(items.length)?(
-        <ul>
-            {items.map((item) =>(
-                 <li className='item' key={item.id} >
-                     <input
-                         type = 'checkbox'
-                         onChange={() => handleCheck(item.id)}
-                         checked ={item.checked}
-
-                
-                    />
-                <label 
-                  style={(item.checked)?{textDecoration :'line-through'} : null }
-                onDoubleClick={() => handleCheck (item.id)}>{item.items}</label>
-               < FaTrashAlt 
-                  role = 'button'
-                  onClick={() => handleDelete(item.id)}
-                  tabIndex="0"
-               />
-            </li>
-
-        ))}
-
-       </ul>
+        
+            <Itemlist
+            items = {items}
+            handleCheck = { handleCheck}
+            handleDelete = { handleDelete }
+            />       
+       
         )
        :(<p>You dont have any list</p>)
        }

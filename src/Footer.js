@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Footer = () => {
-    const year= new Date();
+const Footer = (props) => {
+    // const year= new Date();
   return (
-   <footer>Copyright &copy; {year.getFullYear()}</footer>
+   <footer>{props.length} list {props.length===1? "item" :"items"} </footer>
   )
 }
 
